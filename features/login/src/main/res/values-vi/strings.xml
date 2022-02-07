@@ -1,0 +1,20 @@
+<resources>
+    <string name="registration_title">Đăng ký</string>
+    <string name="registration_user_name">Tên đăng nhập</string>
+    <string name="registration_email">Email</string>
+    <string name="registration_password">Mật khẩu</string>
+    <string name="registration_register">Đăng ký</string>
+    <string name="registration_login"><u>Đăng nhập</u></string>
+    <string name="registration_invalid_name">Tên đăng nhập phải có độ dài lớn hơn 2 và nhỏ hơn 20.</string>
+    <string name="registration_invalid_empty_email">Email phải khác rỗng.</string>
+    <string name="registration_invalid_email">Địa chỉ email không chính xác.</string>
+    <string name="registration_invalid_password">Mật khẩu phải có độ dài lớn hơn 7 và nhỏ hơn 20.</string>
+    <string name="registration_email_address_registered">Địa chỉ email đã được đăng ký</string>
+
+    <string name="login_title">Đăng nhập</string>
+    <string name="login_email">Tên đăng nhập</string>
+    <string name="login_password">Mật khẩu</string>
+    <string name="login_login">Đăng nhập</string>
+    <string name="login_register"><u>Đăng ký</u></string>
+    <string name="login_invalid_email_or_mail">Email hoặc mật khẩu không đúng.</string>
+</resources>

@@ -1,0 +1,60 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk Versions.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.moya.samplebaseapp"
+        minSdk Versions.minSdkVersion
+        targetSdk Versions.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+
+    api project(":logging")
+    api project(":common")
+    api project(":core")
+    api project(":features:login")
+    api project(":features:myprofile")
+    api project(":features:users")
+
+    implementation Dependencies.core_ktx
+    implementation Dependencies.appcompat
+    implementation Dependencies.marital
+    implementation Dependencies.constraints_layout
+
+    implementation Dependencies.navigation_fragment
+    implementation Dependencies.navigation_ui
+
+    implementation Dependencies.hilt_android
+    kapt Dependencies.hilt_compiler
+
+    testImplementation Dependencies.junit
+}

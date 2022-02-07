@@ -1,0 +1,1 @@
+apply from: "$rootProject.projectDir/buildSrc/src/main/java/android-library.gradle"

@@ -1,0 +1,1 @@
+/Users/phamkhoa/Data/Android/SampleBaseApp/buildSrc/build/classes/kotlin/main/Dependencies.class:/Users/phamkhoa/Data/Android/SampleBaseApp/buildSrc/build/classes/kotlin/main/Versions.class

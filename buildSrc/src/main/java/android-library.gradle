@@ -1,0 +1,80 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdk = Versions.compileSdkVersion
+
+    defaultConfig {
+        minSdk Versions.minSdkVersion
+        targetSdk Versions.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+
+    api project(":logging")
+    api project(":common")
+
+    // Core
+    implementation Dependencies.core_ktx
+    implementation Dependencies.appcompat
+    implementation Dependencies.marital
+
+    // Navigation
+    implementation Dependencies.navigation_fragment
+    implementation Dependencies.navigation_ui
+
+    // Constraints Layout
+    implementation Dependencies.constraints_layout
+
+    // Kotlin
+    implementation Dependencies.kotlin_stdlib
+    implementation Dependencies.coroutines
+
+    // DI
+    implementation Dependencies.hilt_android
+    kapt Dependencies.hilt_compiler
+
+    // Glide
+    implementation Dependencies.glide
+    kapt Dependencies.glide_compiler
+
+    // Network
+    implementation Dependencies.retrofit
+    implementation Dependencies.retrofit_moshi_converter
+    implementation Dependencies.okhttp
+    implementation Dependencies.interceptor
+    implementation Dependencies.moshi
+    kapt Dependencies.moshi_codegen
+
+    // Cache
+    implementation Dependencies.room_run_time
+    implementation Dependencies.room_ktx
+    implementation Dependencies.room_rxjava2
+    kapt Dependencies.room_compiler
+
+    // Junit Test
+    testImplementation Dependencies.junit
+}

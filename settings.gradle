@@ -1,0 +1,9 @@
+rootProject.name = "SampleBaseApp"
+include ':app'
+include ':common'
+include ':logging'
+include ':core'
+include ':features'
+include ':features:login'
+include ':features:users'
+include ':features:myprofile'
