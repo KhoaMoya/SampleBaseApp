@@ -1,8 +1,10 @@
 package com.moya.samplebaseapp.presentation
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.moya.common.base.BaseViewModel
 import com.moya.common.base.ScreenEvent
+import com.moya.common.base.ScreenState
 import com.moya.common.usecase.UseCase
 import com.moya.common.usecase.onSuccess
 import com.moya.core.domain.usecase.CheckLoggedIn
@@ -13,6 +15,9 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(
     private val checkLoggedIn: CheckLoggedIn
 ) : BaseViewModel() {
+
+    override val _viewState: MutableLiveData<ScreenState> =
+        MutableLiveData(MainActivityState())
 
     init {
         onEvent(MainActivityEvent.DefineStartDestinationEvent)
@@ -33,11 +38,13 @@ class MainActivityViewModel @Inject constructor(
         ) { either ->
             either.onSuccess { isLogged ->
                 _viewState.value = if (isLogged) {
-                    MainActivityState.SetStartDestination(com.moya.users.R.id.nav_users)
+                    getCurrentState().newStartDestination(com.moya.users.R.id.nav_users)
                 } else {
-                    MainActivityState.SetStartDestination(com.moya.login.R.id.nav_login)
+                    getCurrentState().newStartDestination(com.moya.login.R.id.nav_login)
                 }
             }
         }
     }
+
+    private fun getCurrentState(): MainActivityState = _viewState.value as MainActivityState
 }

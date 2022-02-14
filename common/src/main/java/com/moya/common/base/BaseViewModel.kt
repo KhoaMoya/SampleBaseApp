@@ -8,8 +8,9 @@ import com.moya.common.usecase.Failure
 
 abstract class BaseViewModel : ViewModel() {
 
-    protected val _viewState = MutableLiveData<ScreenState>()
-    val viewState: LiveData<ScreenState> = _viewState
+    protected abstract val _viewState: MutableLiveData<ScreenState>
+    val viewState: LiveData<ScreenState>
+        get() = _viewState
 
     protected val _failure: SingleLiveEvent<Failure> = SingleLiveEvent()
     val failure: LiveData<Failure> = _failure

@@ -1,6 +1,7 @@
 package com.moya.samplebaseapp.presentation
 
 import android.view.LayoutInflater
+import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -9,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.moya.common.base.BaseActivity
 import com.moya.common.base.BaseDialog
 import com.moya.common.base.ScreenState
+import com.moya.core.AppConstants
 import com.moya.samplebaseapp.R
 import com.moya.samplebaseapp.databinding.ActivityMainBinding
 import com.moya.samplebaseapp.presentation.dialog.MessageDialog
@@ -16,6 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>() {
+
+    override val viewModel: MainActivityViewModel by viewModels()
 
     override val bindingInflater: (LayoutInflater) -> ActivityMainBinding = {
         ActivityMainBinding.inflate(it)
@@ -41,14 +45,11 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>() 
     }
 
     override fun updateScreenState(state: ScreenState) {
-        when (state) {
-            is MainActivityState.SetStartDestination -> {
-                setDestinationGraph(state.destination)
-            }
-        }
+        setDestinationGraph((state as MainActivityState).startDestination)
     }
 
     private fun setDestinationGraph(destination: Int) {
+        if (destination == AppConstants.DEFAULT_INT) return
         val navGraph = navController.navInflater.inflate(R.navigation.nav_main)
 
         navGraph.setStartDestination(destination)

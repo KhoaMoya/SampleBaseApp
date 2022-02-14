@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.moya.common.usecase.Failure
@@ -31,10 +30,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment(),
     protected val binding: VB
         get() = requireNotNull(_binding)
 
-    @Suppress("UNCHECKED_CAST")
-    protected val viewModel: VM by lazy {
-        ViewModelProvider(this).get(getGenericType(javaClass) as Class<VM>)
-    }
+    protected abstract val viewModel: VM
 
     protected var backPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -131,8 +127,8 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment(),
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun getBaseActivity(): BaseActivity<BaseViewModel, ViewBinding> {
-        return activity as? BaseActivity<BaseViewModel, ViewBinding>
+    fun getBaseActivity(): BaseActivity<*, *> {
+        return activity as? BaseActivity<*, *>
             ?: throw Exception("Activity of this fragment must be extended from BaseActivity")
     }
 
@@ -213,11 +209,11 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment(),
         findNavController().currentBackStackEntry?.savedStateHandle?.get<T>(key)
 
     /**
-     * Update ui screen depending on the current state
+     * Update ui screen by new state
      *
-     *  @param state current state of screen
+     *  @param state new state of screen
      * */
-    abstract fun updateScreenState(state: ScreenState)
+    abstract fun updateScreenState(newState: ScreenState)
 
     private fun getGenericType(clazz: Class<*>): Class<*> {
         val type = clazz.genericSuperclass

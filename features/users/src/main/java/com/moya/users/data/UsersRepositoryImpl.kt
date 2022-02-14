@@ -7,6 +7,7 @@ import com.moya.core.data.cache.daos.UserDao
 import com.moya.core.data.cache.model.CacheUserInfo
 import com.moya.core.domain.model.UserInfo
 import com.moya.users.data.api.ApiUsers
+import com.moya.users.data.api.model.ApiUsersResponse
 import com.moya.users.domain.repositories.UsersRepository
 import javax.inject.Inject
 
@@ -20,6 +21,14 @@ class UsersRepositoryImpl @Inject constructor(
             call = apiUser.getUsers(page, perPage),
             transform = { it.map { apiModel -> apiModel.toDomainModel() } },
             default = emptyList()
+        )
+    }
+
+    override fun getUserByIdRemotely(userId: Int): Either<Failure, UserInfo> {
+        return requestApi(
+            call = apiUser.getUserById(userId),
+            transform = { it.toDomainModel() },
+            default = ApiUsersResponse()
         )
     }
 

@@ -1,9 +1,11 @@
 package com.moya.users.presentation.users
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.moya.common.base.BaseViewModel
 import com.moya.common.base.Pagination
 import com.moya.common.base.ScreenEvent
+import com.moya.common.base.ScreenState
 import com.moya.core.domain.model.UserInfo
 import com.moya.users.domain.usecase.GetUsers
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,6 +17,9 @@ import kotlinx.coroutines.launch
 class UsersViewModel @Inject constructor(
     private val getUsers: GetUsers
 ) : BaseViewModel() {
+
+    override val _viewState: MutableLiveData<ScreenState> =
+        MutableLiveData(UsersFragmentState())
 
     init {
         _viewState.value = UsersFragmentState()
@@ -85,6 +90,6 @@ class UsersViewModel @Inject constructor(
     }
 
     private fun getCurrentState(): UsersFragmentState {
-        return (_viewState.value as? UsersFragmentState) ?: UsersFragmentState()
+        return _viewState.value as UsersFragmentState
     }
 }

@@ -1,8 +1,10 @@
 package com.moya.login.presentation.login
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.moya.common.base.BaseViewModel
 import com.moya.common.base.ScreenEvent
+import com.moya.common.base.ScreenState
 import com.moya.core.domain.model.LoggedInInfo
 import com.moya.login.domain.usecase.Login
 import com.moya.login.domain.usecase.ValidateInput
@@ -14,6 +16,8 @@ class LoginViewModel @Inject constructor(
     private val login: Login,
     private val validateInput: ValidateInput
 ) : BaseViewModel() {
+
+    override val _viewState: MutableLiveData<ScreenState> = MutableLiveData(LoginState())
 
     override fun onEvent(event: ScreenEvent) {
         when (event) {
@@ -50,7 +54,5 @@ class LoginViewModel @Inject constructor(
         validateInput.validatePassword(data.password)
     }
 
-    private fun getCurrentState(): LoginState {
-        return (_viewState.value as? LoginState) ?: LoginState()
-    }
+    private fun getCurrentState(): LoginState = _viewState.value as LoginState
 }

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.StringRes
 import androidx.core.net.toUri
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -17,7 +18,10 @@ import com.moya.login.domain.usecase.InputException
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegistrationFragment : BaseFragment<RegistrationViewModel, FragmentRegistrationBinding>() {
+class RegistrationFragment :
+    BaseFragment<RegistrationViewModel, FragmentRegistrationBinding>() {
+
+    override val viewModel: RegistrationViewModel by viewModels()
 
     override fun inflateViewBinding(
         inflater: LayoutInflater,
@@ -79,8 +83,8 @@ class RegistrationFragment : BaseFragment<RegistrationViewModel, FragmentRegistr
         showMessageDialog(messageId = messageId)
     }
 
-    override fun updateScreenState(state: ScreenState) {
-        with(state as RegistrationState) {
+    override fun updateScreenState(newState: ScreenState) {
+        with(newState as RegistrationState) {
             if (isRegistering) showLoading() else hideLoading()
             if (isEmailAddressRegisteredError) showMessageDialog(messageId = R.string.registration_email_address_registered)
             if (isSuccessfulRegistration) navigateToHomeScreen()

@@ -2,6 +2,8 @@ package com.moya.users.presentation.users
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.moya.common.base.BaseFragment
 import com.moya.common.base.ScreenState
@@ -11,6 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UsersFragment : BaseFragment<UsersViewModel, FragmentUsersBinding>() {
+
+    override val viewModel: UsersViewModel by viewModels()
 
     private var _currentState: UsersFragmentState = UsersFragmentState()
     private val _userAdapter: UsersAdapter = UsersAdapter(::onClickUser)
@@ -43,8 +47,8 @@ class UsersFragment : BaseFragment<UsersViewModel, FragmentUsersBinding>() {
         findNavController().navigate(action)
     }
 
-    override fun updateScreenState(state: ScreenState) {
-        with(state as UsersFragmentState) {
+    override fun updateScreenState(newState: ScreenState) {
+        with(newState as UsersFragmentState) {
             _currentState = this
             binding.run {
                 if (isLoading) showLoading() else hideLoading()
@@ -60,7 +64,7 @@ class UsersFragment : BaseFragment<UsersViewModel, FragmentUsersBinding>() {
     }
 
     private fun showEmpty(isShow: Boolean) {
-
+        binding.tvEmpty.isVisible = isShow
     }
 
     override fun cancelLoadingAndRefreshingAnimation() {

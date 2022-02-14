@@ -1,7 +1,12 @@
 package com.moya.users.presentation.model
 
+import android.os.Parcelable
+import androidx.annotation.Keep
 import com.moya.core.domain.model.UserInfo
+import kotlinx.parcelize.Parcelize
 
+@Keep
+@Parcelize
 data class UiUser(
     val id: Int,
     val name: String,
@@ -9,7 +14,7 @@ data class UiUser(
     val location: String,
     val createAt: Long,
     val bio: String
-) {
+) : Parcelable {
     companion object {
         fun fromDomain(userInfo: UserInfo): UiUser {
             return UiUser(

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.StringRes
 import androidx.core.net.toUri
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>() {
+
+    override val viewModel: LoginViewModel by viewModels()
 
     override fun inflateViewBinding(
         inflater: LayoutInflater,
@@ -73,9 +76,9 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>() {
         showMessageDialog(messageId = messageId)
     }
 
-    override fun updateScreenState(state: ScreenState) {
+    override fun updateScreenState(newState: ScreenState) {
         hideKeyboard()
-        with(state as LoginState) {
+        with(newState as LoginState) {
             if (isLogging) showLoading() else hideLoading()
             if (isShowAuthError) showMessageDialog(messageId = R.string.login_invalid_email_or_mail)
             if (isNavigateToHome) navigateToHomeScreen()

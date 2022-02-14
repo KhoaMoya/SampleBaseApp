@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.viewbinding.ViewBinding
 import com.moya.common.extensions.hideKeyBoard
@@ -12,7 +11,8 @@ import com.moya.common.extensions.showKeyboard
 import com.moya.logging.Logger
 import java.lang.reflect.ParameterizedType
 
-abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> :
+    AppCompatActivity() {
 
     private var _binding: VB? = null
     abstract val bindingInflater: (LayoutInflater) -> VB
@@ -24,10 +24,7 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
     protected val binding: VB
         get() = requireNotNull(_binding)
 
-    @Suppress("UNCHECKED_CAST")
-    protected val viewModel: VM by lazy {
-        ViewModelProvider(this).get(getGenericType(javaClass) as Class<VM>)
-    }
+    protected abstract val viewModel: VM
 
     protected abstract var navHostResId: Int
     val navController by lazy {

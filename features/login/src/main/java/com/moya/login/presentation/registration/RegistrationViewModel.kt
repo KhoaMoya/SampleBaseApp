@@ -1,8 +1,10 @@
 package com.moya.login.presentation.registration
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.moya.common.base.BaseViewModel
 import com.moya.common.base.ScreenEvent
+import com.moya.common.base.ScreenState
 import com.moya.core.domain.model.LoggedInInfo
 import com.moya.login.domain.usecase.RegisterNewAccount
 import com.moya.login.domain.usecase.ValidateInput
@@ -14,6 +16,9 @@ class RegistrationViewModel @Inject constructor(
     private val registerNewAccount: RegisterNewAccount,
     private val validateInput: ValidateInput
 ) : BaseViewModel() {
+
+    override val _viewState: MutableLiveData<ScreenState> =
+        MutableLiveData(RegistrationState())
 
     override fun onEvent(event: ScreenEvent) {
         when (event) {
@@ -46,14 +51,11 @@ class RegistrationViewModel @Inject constructor(
 
     private fun handleRegisterSuccess(loggedInInfo: LoggedInInfo) {
 //        if (loggedInInfo.code != 0) {
-//            _viewState.value = getCurrentState().toEmailAddressRegisteredErrorState()
+//            _viewState.value = _viewState.value?.toEmailAddressRegisteredErrorState()
 //        } else {
         _viewState.value = getCurrentState().toSuccessfulRegistrationState()
 //        }
     }
 
-    private fun getCurrentState(): RegistrationState {
-        return (_viewState.value as? RegistrationState) ?: RegistrationState()
-    }
-
+    private fun getCurrentState(): RegistrationState = _viewState.value as RegistrationState
 }

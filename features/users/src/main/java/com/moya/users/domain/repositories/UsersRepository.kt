@@ -8,6 +8,8 @@ interface UsersRepository {
 
     fun getUsersRemotely(page: Int, perPage: Int): Either<Failure, List<UserInfo>>
 
+    fun getUserByIdRemotely(userId: Int): Either<Failure, UserInfo>
+
     fun cacheUsers(list: List<UserInfo>)
 
     fun getCachedUsers(): Either<Failure, List<UserInfo>>
