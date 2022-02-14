@@ -1,20 +1,22 @@
 package com.moya.samplebaseapp.presentation
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.moya.common.base.BaseViewModel
 import com.moya.common.base.ScreenEvent
-import com.moya.common.livedata.SingleLiveEvent
 import com.moya.common.usecase.UseCase
 import com.moya.common.usecase.onSuccess
-import com.moya.samplebaseapp.domain.usecase.CheckLogged
+import com.moya.core.domain.usecase.CheckLoggedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val checkLogged: CheckLogged
+    private val checkLoggedIn: CheckLoggedIn
 ) : BaseViewModel() {
+
+    init {
+        onEvent(MainActivityEvent.DefineStartDestinationEvent)
+    }
 
     override fun onEvent(event: ScreenEvent) {
         when (event) {
@@ -25,7 +27,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun handleDefineStartDestinationEvent() {
-        checkLogged(
+        checkLoggedIn(
             scope = viewModelScope,
             params = UseCase.None()
         ) { either ->

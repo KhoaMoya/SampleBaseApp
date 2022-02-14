@@ -136,6 +136,5 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatAct
     override fun onDestroy() {
         super.onDestroy()
         Logger.d(localClassName)
-        _binding = null
     }
 }

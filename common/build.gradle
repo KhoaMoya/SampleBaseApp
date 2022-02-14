@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -45,4 +46,8 @@ dependencies {
     implementation Dependencies.navigation_ui
 
     implementation Dependencies.retrofit
+
+    // Glide
+    implementation Dependencies.glide
+    kapt Dependencies.glide_compiler
 }

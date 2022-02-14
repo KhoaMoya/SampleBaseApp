@@ -4,5 +4,6 @@ import com.moya.common.usecase.Either
 import com.moya.common.usecase.Failure
 
 interface AppRepository {
-    fun logged(): Either<Failure, Boolean>
+
+    fun loggedIn(): Either<Failure, Boolean>
 }

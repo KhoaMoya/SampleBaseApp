@@ -24,7 +24,7 @@ object Versions {
     const val rxandroid_version = "2.1.1"
     const val coroutines_android_version = "1.4.1"
     const val hilt_version = "2.40.5"
-    const val nav_version = "2.3.1"
+    const val nav_version = "2.4.0"
     const val retrofit_version = "2.9.0"
     const val okHttp_version = "4.9.0"
     const val moshi_converter_version = "2.9.0"
@@ -35,4 +35,5 @@ object Versions {
     const val leakcanary_version = "2.4"
     const val timber_version = "4.7.1"
     const val dagger_version = "2.30.1"
+    const val swipe_refresh_layout = "1.1.0"
 }

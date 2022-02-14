@@ -1,7 +1,5 @@
 apply from: "$rootProject.projectDir/buildSrc/src/main/java/android-library.gradle"
-apply plugin: 'org.jetbrains.kotlin.android'
 
 dependencies {
     api project(":core")
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }

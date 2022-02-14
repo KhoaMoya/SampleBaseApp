@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/myProfileFragment"
         android:name="com.moya.myprofile.presentation.MyProfileFragment"
-        android:label="fragment_my_profile"
+        android:label="@string/my_profile_title"
         tools:layout="@layout/fragment_my_profile" />
 </navigation>

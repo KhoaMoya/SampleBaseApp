@@ -8,6 +8,6 @@ import retrofit2.http.POST
 
 interface ApiLogin {
 
-    @POST(ApiLoginConstants.LOGIN_ENDPOINT)
+    @POST("login")
     fun login(@Body apiLoginRequestBody: ApiLoginRequestBody): Call<ApiLoginResponse>
 }

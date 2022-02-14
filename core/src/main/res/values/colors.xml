@@ -3,5 +3,7 @@
     <color name="text_color_title">#000</color>
     <color name="text_color_normal">#858585</color>
     <color name="text_color_content">#000</color>
-    <color name="bg_color">#fff</color>
+    <color name="bg_screen_color">#fff</color>
+    <color name="bg_item_user">#1A000000</color>
+    <color name="bg_tool_bar">#FF3700B3</color>
 </resources>

@@ -13,8 +13,8 @@ class AppRepositoryImpl @Inject constructor(
     private val preferences: AppPreferences
 ) : AppRepository {
 
-    override fun logged(): Either<Failure, Boolean> {
-        return Either.Right(preferences.get(PreferencesConstants.KEY_LOGGED, false))
+    override fun loggedIn(): Either<Failure, Boolean> {
+        return Either.Right(preferences.get(PreferencesConstants.KEY_LOGGED_IN, false))
     }
 
 }

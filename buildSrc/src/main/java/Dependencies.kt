@@ -43,4 +43,8 @@ object Dependencies {
     const val room_ktx = "androidx.room:room-ktx:${Versions.room_version}"
     const val room_rxjava2 = "androidx.room:room-rxjava2:${Versions.room_version}"
     const val room_compiler = "androidx.room:room-compiler:${Versions.room_version}"
+
+    // Swipe refresh layout
+    const val swipe_refresh_layout =
+        "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipe_refresh_layout}"
 }

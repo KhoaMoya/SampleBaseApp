@@ -2,6 +2,7 @@ package com.moya.core.data.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.moya.core.AppConstants
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -55,7 +56,15 @@ class AppPreferences @Inject constructor(
     }
 
     fun getToken(): String {
-        return get(PreferencesConstants.KEY_TOKEN, "")
+        return get(PreferencesConstants.KEY_TOKEN, AppConstants.DEFAULT_STRING)
+    }
+
+    fun putMyId(id: Int) {
+        put(PreferencesConstants.KEY_MY_ID, id)
+    }
+
+    fun getMyId(): Int {
+        return get(PreferencesConstants.KEY_MY_ID, AppConstants.DEFAULT_INT)
     }
 
 }

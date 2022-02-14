@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_color"
+    android:background="@color/bg_screen_color"
     tools:context=".presentation.login.LoginFragment">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg_color"
+        android:background="@color/bg_screen_color"
         android:orientation="vertical"
         android:paddingHorizontal="16dp">
 
@@ -28,16 +28,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:text="@string/login_email"
+            android:text="@string/login_username"
             android:textColor="@color/text_color_normal"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/edtEmail"
+            android:id="@+id/edtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionNext"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:maxLength="30"
             android:maxLines="1"
             android:textColor="@color/text_color_content"

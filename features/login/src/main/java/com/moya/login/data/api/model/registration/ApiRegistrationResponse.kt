@@ -10,24 +10,18 @@ import com.squareup.moshi.JsonClass
 data class ApiRegistrationResponse(
     @Json(name = "code") val code: Int? = null,
     @Json(name = "message") val message: String? = null,
-    @Json(name = "data") val data: ApiRegistrationDataResponse? = null
+    @Json(name = "id") val id: Int? = null,
+    @Json(name = "name") val name: String? = null,
+    @Json(name = "accessToken") val token: String? = null
 ) : ApiModel<LoggedInInfo>() {
 
-    override fun toDomain(): LoggedInInfo {
+    override fun toDomainModel(): LoggedInInfo {
         return LoggedInInfo(
             code = code ?: AppConstants.DEFAULT_INT,
+            id = id ?: AppConstants.DEFAULT_INT,
             message = message ?: AppConstants.DEFAULT_STRING,
-            name = data?.name ?: AppConstants.DEFAULT_STRING,
-            email = data?.email ?: AppConstants.DEFAULT_STRING,
-            token = data?.token ?: AppConstants.DEFAULT_STRING,
+            name = name ?: AppConstants.DEFAULT_STRING,
+            token = token ?: AppConstants.DEFAULT_STRING,
         )
     }
 }
-
-@JsonClass(generateAdapter = true)
-data class ApiRegistrationDataResponse(
-    @Json(name = "id") val id: Int? = null,
-    @Json(name = "name") val name: String? = null,
-    @Json(name = "email") val email: String? = null,
-    @Json(name = "token") val token: String? = null
-)

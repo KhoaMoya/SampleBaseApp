@@ -7,11 +7,27 @@
 
     <fragment
         android:id="@+id/usersFragment"
-        android:name="com.moya.users.presentation.UsersFragment"
-        android:label="fragment_users"
+        android:name="com.moya.users.presentation.users.UsersFragment"
+        android:label="@string/users_title"
         tools:layout="@layout/fragment_users">
-        <deepLink
-            android:autoVerify="true"
-            app:uri="samplebaseapp://users" />
+
+        <deepLink app:uri="samplebaseapp://users" />
+
+        <action
+            android:id="@+id/action_usersFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment"
+            app:launchSingleTop="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.moya.users.presentation.userdetail.UserDetailFragment"
+        android:label="@string/users_detail_title"
+        tools:layout="@layout/fragment_user_detail">
+
+        <argument
+            android:name="userId"
+            app:argType="integer" />
     </fragment>
 </navigation>

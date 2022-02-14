@@ -1,13 +1,14 @@
 package com.moya.common.base
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.moya.common.livedata.SingleLiveEvent
 import com.moya.common.usecase.Failure
 
 abstract class BaseViewModel : ViewModel() {
 
-    protected val _viewState = SingleLiveEvent<ScreenState>()
+    protected val _viewState = MutableLiveData<ScreenState>()
     val viewState: LiveData<ScreenState> = _viewState
 
     protected val _failure: SingleLiveEvent<Failure> = SingleLiveEvent()

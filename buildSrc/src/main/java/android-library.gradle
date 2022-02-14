@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdk = Versions.compileSdkVersion
@@ -27,8 +28,14 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures {
-        viewBinding = true
+        viewBinding true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
     }
 }
 
@@ -60,6 +67,9 @@ dependencies {
     // Glide
     implementation Dependencies.glide
     kapt Dependencies.glide_compiler
+
+    // Swipe refresh layout
+    implementation Dependencies.swipe_refresh_layout
 
     // Network
     implementation Dependencies.retrofit

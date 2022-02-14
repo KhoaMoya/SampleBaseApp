@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="users_title">Mọi người</string>
+    <string name="users_detail_title">Thông tin</string>
 </resources>

@@ -25,11 +25,11 @@ class LoginViewModel @Inject constructor(
 
     private fun handleLoginEvent(data: LoginViewEvent.Login) {
         validateLoginInput(data)
-        _viewState.value = LoginState.LoggingIn
+        _viewState.value = getCurrentState().toIsLoggingState()
         login(
             scope = viewModelScope,
             params = Login.Params(
-                email = data.email,
+                email = data.username,
                 password = data.password
             )
         ) { either ->
@@ -38,15 +38,19 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun handleOnLoginSuccess(loggedInInfo: LoggedInInfo) {
-        if (loggedInInfo.code != 0) {
-            _viewState.value = LoginState.InvalidEmailOrPassword
-        } else {
-            _viewState.value = LoginState.LoginSuccess
-        }
+//        if (loggedInInfo.code != 0) {
+//            _viewState.value = getCurrentState().toShowAuthErrorState()
+//        } else {
+        _viewState.value = getCurrentState().toLoginSuccessState()
+//        }
     }
 
     private fun validateLoginInput(data: LoginViewEvent.Login) {
-        validateInput.validateEmail(data.email)
+        validateInput.validateUserName(data.username)
         validateInput.validatePassword(data.password)
+    }
+
+    private fun getCurrentState(): LoginState {
+        return (_viewState.value as? LoginState) ?: LoginState()
     }
 }

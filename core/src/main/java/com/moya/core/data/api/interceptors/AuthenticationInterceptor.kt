@@ -11,6 +11,10 @@ class AuthenticationInterceptor @Inject constructor(
     private val preferences: AppPreferences
 ) : Interceptor {
 
+    companion object {
+        const val UNAUTHORIZED = 401
+    }
+
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val token = preferences.getToken()

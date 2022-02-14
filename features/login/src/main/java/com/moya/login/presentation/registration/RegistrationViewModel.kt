@@ -25,7 +25,7 @@ class RegistrationViewModel @Inject constructor(
 
     private fun handleRegistrationEvent(data: RegistrationEvent.Register) {
         validateRegistrationInput(data)
-        _viewState.value = RegistrationState.Registering
+        _viewState.value = getCurrentState().toRegisteringState()
         registerNewAccount(
             scope = viewModelScope,
             params = RegisterNewAccount.Params(
@@ -45,11 +45,15 @@ class RegistrationViewModel @Inject constructor(
     }
 
     private fun handleRegisterSuccess(loggedInInfo: LoggedInInfo) {
-        if (loggedInInfo.code != 0) {
-            _viewState.value = RegistrationState.EmailAddressRegistered
-        } else {
-            _viewState.value = RegistrationState.RegistrationSuccess
-        }
+//        if (loggedInInfo.code != 0) {
+//            _viewState.value = getCurrentState().toEmailAddressRegisteredErrorState()
+//        } else {
+        _viewState.value = getCurrentState().toSuccessfulRegistrationState()
+//        }
+    }
+
+    private fun getCurrentState(): RegistrationState {
+        return (_viewState.value as? RegistrationState) ?: RegistrationState()
     }
 
 }

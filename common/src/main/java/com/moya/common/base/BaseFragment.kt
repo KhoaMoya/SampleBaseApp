@@ -110,7 +110,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment(),
      * */
     open fun initObservers() {
         viewModel.failure.observe(viewLifecycleOwner) { failure ->
-            hideLoading()
+            cancelLoadingAndRefreshingAnimation()
             when (failure) {
                 is Failure.NetworkConnection -> {
                     Toast.makeText(context, "Network unavailable", Toast.LENGTH_SHORT).show()
@@ -134,6 +134,10 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment(),
     fun getBaseActivity(): BaseActivity<BaseViewModel, ViewBinding> {
         return activity as? BaseActivity<BaseViewModel, ViewBinding>
             ?: throw Exception("Activity of this fragment must be extended from BaseActivity")
+    }
+
+    open fun cancelLoadingAndRefreshingAnimation() {
+        hideLoading()
     }
 
     fun showMessageDialog(
@@ -194,7 +198,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment(),
      * */
     open fun handleOnClickBack() {
         backPressedCallback.remove()
-        getBaseActivity().navController.navigateUp()
+        getBaseActivity().onBackPressed()
     }
 
     fun <T> setNavigationResult(key: String, value: T) {

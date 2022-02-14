@@ -51,17 +51,14 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>() {
     private fun handleOnClickLogin() {
         try {
             binding.run {
-                val email = edtEmail.text.toString().trim()
+                val username = edtUsername.text.toString().trim()
                 val password = edtPassword.text.toString().trim()
-                viewModel.onEvent(LoginViewEvent.Login(email, password))
+                viewModel.onEvent(LoginViewEvent.Login(username, password))
             }
         } catch (ex: InputException) {
             when (ex) {
-                is InputException.EmptyEmail -> {
-                    showDialogInvalidInput(R.string.registration_invalid_empty_email)
-                }
-                is InputException.InvalidEmail -> {
-                    showDialogInvalidInput(R.string.registration_invalid_email)
+                is InputException.InvalidName -> {
+                    showDialogInvalidInput(R.string.registration_invalid_name)
                 }
                 is InputException.InvalidPassword -> {
                     showDialogInvalidInput(R.string.registration_invalid_password)
@@ -77,19 +74,11 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>() {
     }
 
     override fun updateScreenState(state: ScreenState) {
-        when (state) {
-            is LoginState.LoggingIn -> {
-                hideKeyboard()
-                showLoading()
-            }
-            is LoginState.InvalidEmailOrPassword -> {
-                hideLoading()
-                showMessageDialog(messageId = R.string.login_invalid_email_or_mail)
-            }
-            is LoginState.LoginSuccess -> {
-                hideLoading()
-                navigateToHomeScreen()
-            }
+        hideKeyboard()
+        with(state as LoginState) {
+            if (isLogging) showLoading() else hideLoading()
+            if (isShowAuthError) showMessageDialog(messageId = R.string.login_invalid_email_or_mail)
+            if (isNavigateToHome) navigateToHomeScreen()
         }
     }
 
@@ -100,14 +89,12 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>() {
 
         val navOptions = NavOptions.Builder()
             .setPopUpTo(R.id.nav_login, true)
+            .setLaunchSingleTop(true)
+            .setEnterAnim(androidx.navigation.ui.R.anim.nav_default_enter_anim)
+            .setExitAnim(androidx.navigation.ui.R.anim.nav_default_exit_anim)
             .build()
 
         findNavController().navigate(deepLink, navOptions)
-    }
-
-    override fun handleOnClickBack() {
-        backPressedCallback.remove()
-        activity?.finish()
     }
 
 }

@@ -80,19 +80,10 @@ class RegistrationFragment : BaseFragment<RegistrationViewModel, FragmentRegistr
     }
 
     override fun updateScreenState(state: ScreenState) {
-        when (state) {
-            is RegistrationState.Registering -> {
-                hideKeyboard()
-                showLoading()
-            }
-            is RegistrationState.EmailAddressRegistered -> {
-                hideLoading()
-                showMessageDialog(messageId = R.string.registration_email_address_registered)
-            }
-            is RegistrationState.RegistrationSuccess -> {
-                hideLoading()
-                navigateToHomeScreen()
-            }
+        with(state as RegistrationState) {
+            if (isRegistering) showLoading() else hideLoading()
+            if (isEmailAddressRegisteredError) showMessageDialog(messageId = R.string.registration_email_address_registered)
+            if (isSuccessfulRegistration) navigateToHomeScreen()
         }
     }
 

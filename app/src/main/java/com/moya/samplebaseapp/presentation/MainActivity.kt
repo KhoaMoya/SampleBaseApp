@@ -2,6 +2,9 @@ package com.moya.samplebaseapp.presentation
 
 import android.view.LayoutInflater
 import androidx.core.view.isVisible
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.moya.common.base.BaseActivity
 import com.moya.common.base.BaseDialog
@@ -22,21 +25,19 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>() 
     override var confirmDialog: BaseDialog? = null
     override var messageDialog: BaseDialog? = null
 
+    private val appBarConfiguration by lazy {
+        AppBarConfiguration(
+            topLevelDestinationIds = setOf(
+                com.moya.login.R.id.loginFragment,
+                com.moya.users.R.id.usersFragment,
+                com.moya.login.R.id.registrationFragment
+            )
+        )
+    }
+
     override fun initViews() {
+        setupActionBar()
         setupBottomNav()
-        triggerStartDestination()
-    }
-
-    override fun initObservers() {
-        super.initObservers()
-
-        viewModel.viewState.observe(this) {
-            updateScreenState(it)
-        }
-    }
-
-    private fun triggerStartDestination() {
-        viewModel.onEvent(MainActivityEvent.DefineStartDestinationEvent)
     }
 
     override fun updateScreenState(state: ScreenState) {
@@ -50,13 +51,22 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>() 
     private fun setDestinationGraph(destination: Int) {
         val navGraph = navController.navInflater.inflate(R.navigation.nav_main)
 
-        navGraph.startDestination = destination
+        navGraph.setStartDestination(destination)
         navController.graph = navGraph
     }
 
     private fun setupBottomNav() {
         binding.bottomNavigation.setupWithNavController(navController)
         hideBottomNavWhenNeed()
+    }
+
+    private fun setupActionBar() {
+        setSupportActionBar(binding.toolbar)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     private fun hideBottomNavWhenNeed() {
