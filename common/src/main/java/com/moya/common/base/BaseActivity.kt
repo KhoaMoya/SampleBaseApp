@@ -9,7 +9,6 @@ import androidx.viewbinding.ViewBinding
 import com.moya.common.extensions.hideKeyBoard
 import com.moya.common.extensions.showKeyboard
 import com.moya.logging.Logger
-import java.lang.reflect.ParameterizedType
 
 abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> :
     AppCompatActivity() {
@@ -108,12 +107,6 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> :
      *  @param state current state of screen
      * */
     abstract fun updateScreenState(state: ScreenState)
-
-    private fun getGenericType(clazz: Class<*>): Class<*> {
-        val type = clazz.genericSuperclass
-        val paramType = type as ParameterizedType
-        return paramType.actualTypeArguments[0] as Class<*>
-    }
 
     override fun onPause() {
         super.onPause()

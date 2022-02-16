@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.moya.common.usecase.Failure
 import com.moya.logging.Logger
-import java.lang.reflect.ParameterizedType
 
 abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment(),
     SafetyClickListener {
@@ -214,12 +213,6 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment(),
      *  @param state new state of screen
      * */
     abstract fun updateScreenState(newState: ScreenState)
-
-    private fun getGenericType(clazz: Class<*>): Class<*> {
-        val type = clazz.genericSuperclass
-        val paramType = type as ParameterizedType
-        return paramType.actualTypeArguments[0] as Class<*>
-    }
 
     /**
      * Request single permission

@@ -2,8 +2,8 @@ package com.moya.core.data.cache.di
 
 import android.content.Context
 import androidx.room.Room
-import com.moya.core.AppConstants
 import com.moya.core.data.cache.AppDatabase
+import com.moya.core.data.cache.DbConstants
 import com.moya.core.data.cache.daos.UserDao
 import dagger.Module
 import dagger.Provides
@@ -24,7 +24,7 @@ class CacheModule {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            AppConstants.DATABASE_NAME
+            DbConstants.DATABASE_NAME
         ).build()
     }
 
