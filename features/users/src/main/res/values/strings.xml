@@ -2,4 +2,5 @@
 <resources>
     <string name="users_title">Users</string>
     <string name="users_detail_title">Users Detail</string>
+    <string name="users_detail_edit_info">Edit user info</string>
 </resources>

@@ -8,4 +8,10 @@
     <include app:graph="@navigation/nav_users" />
     <include app:graph="@navigation/nav_my_profile" />
 
+    <include-dynamic
+        android:id="@id/dynamicFeatureEdit"
+        app:graphPackage="com.moya.samplebaseapp.edit"
+        app:graphResName="nav_edit_user_info"
+        app:moduleName="edit" />
+
 </navigation>

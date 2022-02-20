@@ -19,12 +19,20 @@ object Dependencies {
     const val timber = "com.jakewharton.timber:timber:${Versions.timber_version}"
 
     // Navigation
-    const val navigation_fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
+    const val navigation_fragment =
+        "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
     const val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
+    const val navigation_dynamic =
+        "androidx.navigation:navigation-dynamic-features-fragment:${Versions.nav_version}"
 
     // DI
     const val hilt_android = "com.google.dagger:hilt-android:${Versions.hilt_version}"
     const val hilt_compiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt_version}"
+
+    const val dagger_android = "com.google.dagger:dagger:${Versions.dagger_version}"
+    const val dagger_compiler = "com.google.dagger:dagger-compiler:${Versions.dagger_version}"
+    const val dagger_processor =
+        "com.google.dagger:dagger-android-processor:${Versions.dagger_processor_version}"
 
     // Glide
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
@@ -32,7 +40,8 @@ object Dependencies {
 
     // Network
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit_version}"
-    const val retrofit_moshi_converter = "com.squareup.retrofit2:converter-moshi:${Versions.moshi_converter_version}"
+    const val retrofit_moshi_converter =
+        "com.squareup.retrofit2:converter-moshi:${Versions.moshi_converter_version}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp_version}"
     const val interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp_version}"
     const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi_version}"

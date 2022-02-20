@@ -5,8 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.moya.common.base.BaseViewModel
 import com.moya.common.base.ScreenEvent
 import com.moya.common.base.ScreenState
+import com.moya.common.usecase.Failure
 import com.moya.core.domain.model.UserInfo
-import com.moya.users.domain.usecase.GetUserById
+import com.moya.core.domain.usecase.GetUserById
 import com.moya.users.presentation.model.UiUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -32,6 +33,11 @@ class UserDetailViewModel @Inject constructor(
         ) { either ->
             either.fold(::handleFailure, ::handleGetUserDetailSuccess)
         }
+    }
+
+    override fun handleFailure(failure: Failure) {
+        super.handleFailure(failure)
+        _viewState.value = getCurrentState().copy(isLoading = false)
     }
 
     private fun handleGetUserDetailSuccess(userInfo: UserInfo) {

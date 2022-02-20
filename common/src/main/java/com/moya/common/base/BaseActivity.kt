@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.dynamicfeatures.fragment.DynamicNavHostFragment
 import androidx.viewbinding.ViewBinding
 import com.moya.common.extensions.hideKeyBoard
 import com.moya.common.extensions.showKeyboard
@@ -27,7 +27,7 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> :
 
     protected abstract var navHostResId: Int
     val navController by lazy {
-        (supportFragmentManager.findFragmentById(navHostResId) as NavHostFragment)
+        (supportFragmentManager.findFragmentById(navHostResId) as DynamicNavHostFragment)
             .navController
     }
 

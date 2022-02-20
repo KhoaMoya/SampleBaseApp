@@ -1,5 +1,5 @@
 apply from: "$rootProject.projectDir/buildSrc/src/main/java/android-library.gradle"
 
 dependencies {
-    api project(":core")
+    implementation project(":core")
 }

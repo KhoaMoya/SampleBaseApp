@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class CheckLoggedIn @Inject constructor(
     private val appRepository: AppRepository
-) : UseCase<Boolean, UseCase.None>() {
+) : UseCase<UseCase.None, Boolean>() {
 
     override suspend fun run(params: None): Either<Failure, Boolean> {
         return appRepository.loggedIn()

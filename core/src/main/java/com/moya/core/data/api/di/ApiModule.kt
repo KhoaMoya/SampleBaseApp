@@ -1,6 +1,7 @@
 package com.moya.core.data.api.di
 
 import com.moya.core.data.api.ApiConstants
+import com.moya.core.data.api.ApiUserInfo
 import com.moya.core.data.api.interceptors.AuthenticationInterceptor
 import com.moya.core.data.api.interceptors.HeaderInterceptor
 import com.moya.core.data.api.interceptors.LoggingInterceptor
@@ -47,5 +48,13 @@ object ApiModule {
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiUserInfo(
+        retrofit: Retrofit
+    ): ApiUserInfo {
+        return retrofit.create(ApiUserInfo::class.java)
     }
 }

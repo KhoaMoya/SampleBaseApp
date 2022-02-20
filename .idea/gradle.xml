@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/edit" />
             <option value="$PROJECT_DIR$/features/login" />
             <option value="$PROJECT_DIR$/features/myprofile" />
             <option value="$PROJECT_DIR$/features/users" />

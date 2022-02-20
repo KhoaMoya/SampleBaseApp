@@ -6,6 +6,7 @@
       <module name="SampleBaseApp.buildSrc" target="11" />
       <module name="SampleBaseApp.common" target="11" />
       <module name="SampleBaseApp.core" target="11" />
+      <module name="SampleBaseApp.features.edit" target="11" />
       <module name="SampleBaseApp.features.login" target="11" />
       <module name="SampleBaseApp.features.myprofile" target="11" />
       <module name="SampleBaseApp.features.users" target="11" />

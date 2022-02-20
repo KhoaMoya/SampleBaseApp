@@ -35,7 +35,7 @@ android {
 
 dependencies {
 
-    api project(":logging")
+    implementation project(":logging")
 
     implementation Dependencies.core_ktx
     implementation Dependencies.appcompat
@@ -44,10 +44,15 @@ dependencies {
 
     implementation Dependencies.navigation_fragment
     implementation Dependencies.navigation_ui
+    implementation Dependencies.navigation_dynamic
 
     implementation Dependencies.retrofit
 
     // Glide
     implementation Dependencies.glide
     kapt Dependencies.glide_compiler
+
+    // DI
+    implementation Dependencies.dagger_android
+    kapt Dependencies.dagger_compiler
 }

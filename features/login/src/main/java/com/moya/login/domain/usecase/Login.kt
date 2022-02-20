@@ -12,7 +12,7 @@ import javax.inject.Inject
 @ViewModelScoped
 class Login @Inject constructor(
     private val loginRepository: LoginRepository
-) : UseCase<LoggedInInfo, Login.Params>() {
+) : UseCase<Login.Params, LoggedInInfo>() {
 
     override suspend fun run(params: Params): Either<Failure, LoggedInInfo> {
         return loginRepository.login(

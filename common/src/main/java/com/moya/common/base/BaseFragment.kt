@@ -59,7 +59,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment(),
         super.onViewCreated(view, savedInstanceState)
         Logger.d(javaClass.simpleName)
 
-        initData(arguments)
+        initData()
         initViews()
         initActions()
         initObservers()
@@ -84,9 +84,8 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment(),
     /**
      * Receive data from which screen open this screen.
      *
-     * @param data [Bundle]: Composite received data.
      */
-    open fun initData(data: Bundle?) {}
+    open fun initData() {}
 
     /**
      * Setup views of activity. ex: setup recycler view, view pager,...

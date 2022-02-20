@@ -1,11 +1,11 @@
 package com.moya.samplebaseapp
 
-import android.app.Application
+import com.google.android.play.core.splitcompat.SplitCompatApplication
 import com.moya.logging.Logger
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class SampleApplication : Application() {
+class SampleApplication : SplitCompatApplication() {
 
     override fun onCreate() {
         super.onCreate()

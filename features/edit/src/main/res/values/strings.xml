@@ -1,0 +1,8 @@
+<resources>
+    <string name="edit_info_title">Edit Info</string>
+    <string name="edit_info_change_avatar">Change avatar</string>
+    <string name="edit_info_name">Name</string>
+    <string name="edit_info_location">Location</string>
+    <string name="edit_info_bio">Bio</string>
+    <string name="edit_info_update">Update</string>
+</resources>

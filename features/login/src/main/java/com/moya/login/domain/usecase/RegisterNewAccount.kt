@@ -14,7 +14,7 @@ import javax.inject.Inject
 class RegisterNewAccount @Inject constructor(
     private val registrationRepository: RegistrationRepository,
     private val loginRepository: LoginRepository
-) : UseCase<LoggedInInfo, RegisterNewAccount.Params>() {
+) : UseCase<RegisterNewAccount.Params, LoggedInInfo>() {
 
     override suspend fun run(params: Params): Either<Failure, LoggedInInfo> {
         return registrationRepository.register(

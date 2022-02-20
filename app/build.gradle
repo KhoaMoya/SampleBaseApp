@@ -38,16 +38,19 @@ android {
         exclude 'META-INF/AL2.0'
         exclude 'META-INF/LGPL2.1'
     }
+
+    dynamicFeatures = [":features:edit"]
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api project(":logging")
     api project(":common")
     api project(":core")
-    api project(":features:login")
-    api project(":features:myprofile")
-    api project(":features:users")
+    implementation project(":features:login")
+    implementation project(":features:myprofile")
+    implementation project(":features:users")
 
     implementation Dependencies.core_ktx
     implementation Dependencies.appcompat
@@ -56,9 +59,12 @@ dependencies {
 
     implementation Dependencies.navigation_fragment
     implementation Dependencies.navigation_ui
+    implementation Dependencies.navigation_dynamic
 
     implementation Dependencies.hilt_android
     kapt Dependencies.hilt_compiler
+
+    implementation Dependencies.retrofit
 
     testImplementation Dependencies.junit
 }

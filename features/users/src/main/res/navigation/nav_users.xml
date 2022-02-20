@@ -29,5 +29,15 @@
         <argument
             android:name="userId"
             app:argType="integer" />
+
+        <action
+            android:id="@+id/action_userDetail_to_editInfo"
+            app:destination="@+id/dynamicFeatureEdit">
+
+            <argument
+                android:name="userId"
+                app:argType="integer" />
+        </action>
+
     </fragment>
 </navigation>

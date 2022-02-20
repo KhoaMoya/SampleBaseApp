@@ -15,7 +15,7 @@ abstract class BaseViewModel : ViewModel() {
     protected val _failure: SingleLiveEvent<Failure> = SingleLiveEvent()
     val failure: LiveData<Failure> = _failure
 
-    protected fun handleFailure(failure: Failure) {
+    protected open fun handleFailure(failure: Failure) {
         _failure.value = failure
     }
 
