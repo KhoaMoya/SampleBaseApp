@@ -1,6 +1,6 @@
 # SampleBaseApp
-Android sample base application that uses clean architecture and modularization. With advantages of this architectures make application is easy to read, understand
-, scale and maintance.
+Android sample base application that uses clean architecture and modularization. With advantages of
+this architectures make application is easy to read, understand , scale and maintains.
 
 Introduction
 --------------
@@ -19,9 +19,14 @@ The dependencies of the modules are depicted in the diagram below.
 ![Modules dependencies](images/modules_dependencies.png "Modules dependencies")
 ![Modules in project](images/modules_in_project.png "Modules in project")
 
-Note: The `app` module can access all other modules except `edit` module, because the `edit` module is a dynamic module, the dependency of the `edit` module and the `app` module is an inverse dependency. Android Studio installs all your modules by default, including dynamic features. To test the installation of dynamic feature modules you can use bundletool, a command-line tool.
+Note: The `app` module can access all other modules except `edit` module, because the `edit` module
+is a dynamic module, the dependency of the `edit` module and the `app` module is an inverse
+dependency. Android Studio installs all your modules by default, including dynamic features. To test
+the installation of dynamic feature modules you can
+use [bundle tool](https://developer.android.com/studio/command-line/bundletool), a command-line
+tool.
 
-* `app` module: is an application module which ontains MainApplication and MainActivity. 
+* `app` module: is an application module which contains MainApplication and MainActivity.
 * `common` module: contains all common classes that can be used for other applications.
 * `core` module: contains classes that are shared by modules. For example, create objects: Retrofit, Database, Preferences, ...
 * `logging` module: contains custom logging methods. This app use Timber library.
