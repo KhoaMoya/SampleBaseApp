@@ -1,21 +1,17 @@
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
-}
+apply plugin: 'com.android.dynamic-feature'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
 
 android {
-    compileSdk Versions.compileSdkVersion
+    compileSdk = Versions.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.moya.samplebaseapp"
         minSdk Versions.minSdkVersion
         targetSdk Versions.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -31,40 +27,47 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures {
         viewBinding true
     }
+
     packagingOptions {
         exclude 'META-INF/AL2.0'
         exclude 'META-INF/LGPL2.1'
     }
-
-    dynamicFeatures = [":features:edit", ':instant_app']
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(":logging")
-    api project(":common")
-    api project(":core")
-    implementation project(":features:login")
-    implementation project(":features:myprofile")
-    implementation project(":features:users")
+    implementation project(":app")
 
+    // Core
     implementation Dependencies.core_ktx
     implementation Dependencies.appcompat
     implementation Dependencies.marital
-    implementation Dependencies.constraints_layout
 
+    // Navigation
     implementation Dependencies.navigation_fragment
     implementation Dependencies.navigation_ui
-    implementation Dependencies.navigation_dynamic
 
+    // Constraints Layout
+    implementation Dependencies.constraints_layout
+
+    // Kotlin
+    implementation Dependencies.kotlin_stdlib
+    implementation Dependencies.coroutines
+
+    // DI
     implementation Dependencies.hilt_android
     kapt Dependencies.hilt_compiler
 
-    implementation Dependencies.retrofit
+    implementation Dependencies.dagger_android
+    kapt Dependencies.dagger_compiler
+    kapt Dependencies.dagger_processor
 
-    testImplementation Dependencies.junit
+    // Retrofit
+    implementation Dependencies.retrofit
+    implementation Dependencies.moshi
+    kapt Dependencies.moshi_codegen
 }

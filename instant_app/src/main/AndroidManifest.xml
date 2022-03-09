@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="com.moya.edit">
+    package="com.moya.instant_feature">
 
     <dist:module
         dist:instant="true"
-        dist:title="@string/title_edit">
+        dist:title="@string/title_instant_feature">
         <dist:delivery>
-            <dist:on-demand />
+            <dist:install-time />
         </dist:delivery>
-        <dist:fusing dist:include="true" />
+        <dist:fusing dist:include="false" />
     </dist:module>
 </manifest>

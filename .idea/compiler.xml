@@ -10,6 +10,7 @@
       <module name="SampleBaseApp.features.login" target="11" />
       <module name="SampleBaseApp.features.myprofile" target="11" />
       <module name="SampleBaseApp.features.users" target="11" />
+      <module name="SampleBaseApp.instant_app" target="11" />
       <module name="SampleBaseApp.logging" target="11" />
     </bytecodeTargetLevel>
   </component>
