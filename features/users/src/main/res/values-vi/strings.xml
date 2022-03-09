@@ -3,4 +3,5 @@
     <string name="users_title">Mọi người</string>
     <string name="users_detail_title">Thông tin</string>
     <string name="users_detail_edit_info">Chỉnh sửa thông tin</string>
+    <string name="users_detail_share">Chia sẻ</string>
 </resources>

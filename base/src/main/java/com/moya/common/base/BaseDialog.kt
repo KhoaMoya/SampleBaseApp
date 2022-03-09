@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.ViewGroup
-import com.moya.common.R
 
 abstract class BaseDialog(context: Context) : Dialog(context),
     SafetyClickListener {

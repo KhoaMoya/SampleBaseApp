@@ -3,14 +3,14 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
       <module name="SampleBaseApp.app" target="11" />
+      <module name="SampleBaseApp.base" target="11" />
       <module name="SampleBaseApp.buildSrc" target="11" />
-      <module name="SampleBaseApp.common" target="11" />
       <module name="SampleBaseApp.core" target="11" />
       <module name="SampleBaseApp.features.edit" target="11" />
       <module name="SampleBaseApp.features.login" target="11" />
       <module name="SampleBaseApp.features.myprofile" target="11" />
+      <module name="SampleBaseApp.features.share" target="11" />
       <module name="SampleBaseApp.features.users" target="11" />
-      <module name="SampleBaseApp.instant_app" target="11" />
       <module name="SampleBaseApp.logging" target="11" />
     </bytecodeTargetLevel>
   </component>

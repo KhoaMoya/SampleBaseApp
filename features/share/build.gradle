@@ -1,7 +1,5 @@
 apply plugin: 'com.android.dynamic-feature'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdk = Versions.compileSdkVersion
@@ -14,12 +12,6 @@ android {
         consumerProguardFiles "consumer-rules.pro"
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -57,17 +49,4 @@ dependencies {
     // Kotlin
     implementation Dependencies.kotlin_stdlib
     implementation Dependencies.coroutines
-
-    // DI
-    implementation Dependencies.hilt_android
-    kapt Dependencies.hilt_compiler
-
-    implementation Dependencies.dagger_android
-    kapt Dependencies.dagger_compiler
-    kapt Dependencies.dagger_processor
-
-    // Retrofit
-    implementation Dependencies.retrofit
-    implementation Dependencies.moshi
-    kapt Dependencies.moshi_codegen
 }

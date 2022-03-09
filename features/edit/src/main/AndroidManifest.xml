@@ -3,7 +3,7 @@
     package="com.moya.edit">
 
     <dist:module
-        dist:instant="true"
+        dist:instant="false"
         dist:title="@string/title_edit">
         <dist:delivery>
             <dist:on-demand />

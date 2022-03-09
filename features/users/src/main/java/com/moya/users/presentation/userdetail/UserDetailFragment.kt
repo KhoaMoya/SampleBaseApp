@@ -6,6 +6,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.play.core.splitinstall.SplitInstallManager
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import com.google.android.play.core.splitinstall.SplitInstallRequest
+import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import com.moya.common.base.BaseFragment
 import com.moya.common.base.ScreenState
 import com.moya.common.base.setOnSafetyClickListener
@@ -38,13 +42,27 @@ class UserDetailFragment :
 
     override fun initActions() {
         super.initActions()
-        binding.btnEditInfo.setOnSafetyClickListener(this) {
-            currentUserInfo?.id?.let { userId ->
-                findNavController().navigate(
-                    UserDetailFragmentDirections.actionUserDetailToEditInfo(
-                        userId
+
+        binding.run {
+
+            btnEditInfo.setOnSafetyClickListener(this@UserDetailFragment) {
+                currentUserInfo?.id?.let { userId ->
+                    findNavController().navigate(
+                        UserDetailFragmentDirections.actionUserDetailToEditInfo(
+                            userId
+                        )
                     )
-                )
+                }
+            }
+
+            btnShare.setOnSafetyClickListener(this@UserDetailFragment) {
+                currentUserInfo?.id?.let { userId ->
+                    findNavController().navigate(
+                        UserDetailFragmentDirections.actionUserDetailToShare(
+                            userId
+                        )
+                    )
+                }
             }
         }
     }
@@ -79,6 +97,61 @@ class UserDetailFragment :
 
     private fun enableButtonEdit(enable: Boolean) {
         binding.btnEditInfo.isVisible = enable
+        binding.btnShare.isVisible = enable
+    }
+
+    private fun checkInstalledFeature() {
+        var sessionId = 0
+
+        // Creates an instance of SplitInstallManager.
+        val splitInstallManager: SplitInstallManager =
+            SplitInstallManagerFactory.create(requireContext())
+
+        // Creates a request to install a module.
+        val request = SplitInstallRequest
+            .newBuilder()
+            .addModule("edit")
+            .build()
+
+        splitInstallManager.registerListener { state ->
+            if (state.sessionId() != sessionId) return@registerListener
+
+            when (state.status()) {
+                SplitInstallSessionStatus.REQUIRES_USER_CONFIRMATION -> {
+                }
+
+                SplitInstallSessionStatus.INSTALLED -> {
+                }
+
+                SplitInstallSessionStatus.FAILED,
+                SplitInstallSessionStatus.CANCELED,
+                SplitInstallSessionStatus.CANCELING -> {
+                }
+
+                SplitInstallSessionStatus.PENDING -> {
+                }
+
+                SplitInstallSessionStatus.DOWNLOADING -> {
+                }
+
+                else -> {
+                }
+            }
+        }
+
+        splitInstallManager
+            .startInstall(request)
+            .addOnSuccessListener { sId -> sessionId = sId }
+            .addOnFailureListener { exception -> /*to do*/ }
+
+        // To cancel a request before it is installed
+        splitInstallManager.cancelInstall(sessionId)
+
+        // To check currently installed dynamic feature modules on the device
+        val installedModules: Set<String> = splitInstallManager.installedModules // ["edit","share"]
+
+        // To uninstall modules
+        splitInstallManager.deferredUninstall(listOf("edit"))
     }
 
 }

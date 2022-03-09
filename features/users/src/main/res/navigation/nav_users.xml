@@ -39,5 +39,14 @@
                 app:argType="integer" />
         </action>
 
+        <action
+            android:id="@+id/action_userDetail_to_share"
+            app:destination="@+id/dynamicFeatureShare">
+
+            <argument
+                android:name="userId"
+                app:argType="integer" />
+        </action>
+
     </fragment>
 </navigation>

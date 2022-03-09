@@ -43,7 +43,7 @@ android {
 dependencies {
 
     api project(":logging")
-    api project(":common")
+    api project(":base")
 
     // Core
     implementation Dependencies.core_ktx

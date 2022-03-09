@@ -39,14 +39,14 @@ android {
         exclude 'META-INF/LGPL2.1'
     }
 
-    dynamicFeatures = [":features:edit", ':instant_app']
+    dynamicFeatures = [":features:edit", ':features:share']
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api project(":logging")
-    api project(":common")
+    api project(':base')
     api project(":core")
     implementation project(":features:login")
     implementation project(":features:myprofile")

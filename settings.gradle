@@ -1,6 +1,6 @@
 rootProject.name = "SampleBaseApp"
 include ':app'
-include ':common'
+include ':base'
 include ':logging'
 include ':core'
 include ':features'
@@ -8,4 +8,4 @@ include ':features:login'
 include ':features:users'
 include ':features:myprofile'
 include ':features:edit'
-include ':instant_app'
+include ':features:share'

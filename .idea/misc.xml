@@ -9,7 +9,9 @@
         <entry key="features/login/src/main/res/layout/fragment_login.xml" value="0.19610507246376813" />
         <entry key="features/login/src/main/res/layout/fragment_registration.xml" value="0.25" />
         <entry key="features/myprofile/src/main/res/drawable/ic_my_profile.xml" value="0.1315" />
+        <entry key="features/share/src/main/res/layout/fragment_share.xml" value="0.209375" />
         <entry key="features/users/src/main/res/drawable/ic_users.xml" value="0.1315" />
+        <entry key="features/users/src/main/res/layout/fragment_user_detail.xml" value="0.20531154239019409" />
         <entry key="features/users/src/main/res/layout/fragment_users.xml" value="0.25104166666666666" />
       </map>
     </option>

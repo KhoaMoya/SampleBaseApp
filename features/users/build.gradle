@@ -1,5 +1,6 @@
-apply from: "$rootProject.projectDir/buildSrc/src/main/java/android-library.gradle"
+apply from: "$rootProject.projectDir/buildSrc/src/main/java/common_feature_library.gradle"
 
 dependencies {
     implementation project(":core")
+    implementation 'com.google.android.play:core-ktx:1.8.1'
 }
