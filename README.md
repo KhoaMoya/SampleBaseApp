@@ -27,13 +27,16 @@ use [bundle tool](https://developer.android.com/studio/command-line/bundletool),
 tool.
 
 * `app` module: is an application module which contains MainApplication and MainActivity.
-* `common` module: contains all common classes that can be used for other applications.
-* `core` module: contains classes that are shared by modules. For example, create objects: Retrofit, Database, Preferences, ...
+* `base` module: contains all base classes that can be used for other applications.
+* `core` module: contains classes that are shared by modules. For example, create objects: Retrofit,
+  Database, Preferences, ...
 * `logging` module: contains custom logging methods. This app use Timber library.
 * `login` module: is a feature module which is available when install app. It contains login and registration flow.
 * `users` module: is a feature module and it is available when install app. This feature contains list users screen and detail user screen.
 * `myprofile` module: is a feature module which is available when install app. This feature contains my profile screen.
-* `edit` module: is a dynamic feature module which no available when install app. When user need it, it will be download. This feature contain edit user info screen.
+* `edit` module: is a dynamic feature module which no available when install app. When user need it,
+  it will be download. This feature contain edit user info screen.
+* `share` module: is a instant dynamic feature module which available when run instant app.
 
 ### Packets in feature module
 
@@ -54,7 +57,7 @@ The app use MVVM pattern.
 
 ![Work flow](images/work_flow.png "Work flow")
 
-### Reference
+### References
 
 * [CleanArchitecture][0] - Android Kotlin Clean Architecture
 * [Real-World Android by Tutorials][1] - The projects and materials that accompany the Real-World Android by Tutorials book
